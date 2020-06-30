@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "204921187411",
+    "firebase_url": "https://cssc-ngo.firebaseio.com",
+    "project_id": "cssc-ngo",
+    "storage_bucket": "cssc-ngo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204921187411:android:f62032eaeadc60cf412aa6",
+        "android_client_info": {
+          "package_name": "com.example.csscngo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204921187411-bp6c784r17mg6tnni08b1re2euo3odp4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.csscngo",
+            "certificate_hash": "0a7f3c068a6999d9110b73988385a5a750e8bde8"
+          }
+        },
+        {
+          "client_id": "204921187411-gui3jc2ckntvb246enj15gbl4m80457q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm0U0EDVIFgeNZqw-wmZrw9ilrtWTA7Lc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204921187411-gui3jc2ckntvb246enj15gbl4m80457q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
