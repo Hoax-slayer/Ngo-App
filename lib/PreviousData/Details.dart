@@ -1,5 +1,5 @@
-
 import 'dart:core';
+import 'package:csscngo/Services/sizeconfig.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +17,7 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
+    Sizeconfig().init(context);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255,233,217,1),
       appBar: AppBar(
@@ -24,7 +25,7 @@ class _DetailsState extends State<Details> {
             widget.get.data['महिल कुटुंब प्रमुखाचे नाव'] ?? 'default value'),
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: EdgeInsets.only(top: Sizeconfig.blockSizeVertical*3.125),
         child: ListView(
           shrinkWrap: true,
           //cacheExtent: 300,
@@ -39,27 +40,53 @@ class _DetailsState extends State<Details> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.get.data['कुटुंबातील व्यक्तींची संख्या']
-                          .toString() ??
-                      'default value'),
+
+                  Text("कुटुंबाचा युनिक नंबर : ${widget.get.data['नवीन कुटुंबाचा युनिक नंबर']}".toString() ??
+                      'default value',style: TextStyle(
+                      color: Color.fromRGBO(46, 77, 92, 1), fontSize: 17)),
+
                   SizedBox(
-                    height: 20,
+                    height:  Sizeconfig.blockSizeVertical*3.125,
                   ),
-                  Text(widget.get.data['Location'] ?? 'default value',
-                      style: TextStyle(
-                          color: Color.fromRGBO(46, 77, 92, 1), fontSize: 17)),
+
+                  Text("कुटुंबातील व्यक्तींची संख्या : ${widget.get.data['कुटुंबातील व्यक्तींची संख्या']}".toString() ??
+                      'default value',style: TextStyle(
+                      color: Color.fromRGBO(46, 77, 92, 1), fontSize: 17)),
+
+//
+//                  Text(widget.get.data['कुटुंबातील व्यक्तींची संख्या']
+//                          .toString() ??
+//                      'default value'),
                   SizedBox(
-                    height: 20,
+                    height:  Sizeconfig.blockSizeVertical*3.125,
                   ),
-                  Text(widget.get.data['घरचा पत्ता'] ?? 'default value',
-                      style: TextStyle(
-                          color: Color.fromRGBO(46, 77, 92, 1), fontSize: 17)),
+
+                  Text("घरचा पत्ता : ${widget.get.data['घरचा पत्ता']}".toString() ??
+                      'default value',style: TextStyle(
+                      color: Color.fromRGBO(46, 77, 92, 1), fontSize: 17)),
+
+//                  Text(widget.get.data['Location'] ?? 'default value',
+//                      style: TextStyle(
+//                          color: Color.fromRGBO(46, 77, 92, 1), fontSize: 17)),
                   SizedBox(
-                    height: 20,
+                    height:  Sizeconfig.blockSizeVertical*3.125,
                   ),
-                  Text(widget.get.data['Unique no'].toString() ??
-                      'default value'),
-                  SizedBox(height: 20,),
+
+                  Text("वस्तीचे नाव : ${widget.get.data['वस्तीचे नाव']}".toString() ??
+                      'default value',style: TextStyle(
+                      color: Color.fromRGBO(46, 77, 92, 1), fontSize: 17)),
+
+//                  Text(widget.get.data['घरचा पत्ता'] ?? 'default value',
+//                      style: TextStyle(
+//                          color: Color.fromRGBO(46, 77, 92, 1), fontSize: 17)),
+
+                  SizedBox(
+                    height: Sizeconfig.blockSizeVertical*3.125,
+                  ),
+
+//                  Text(widget.get.data['Unique no'].toString() ??
+//                      'default value'),
+//                  SizedBox(height:  Sizeconfig.blockSizeVertical*3.125,),
 
                   Text('Members Details',style: TextStyle(fontSize: 20 ),),
 
@@ -93,12 +120,11 @@ class _DetailsState extends State<Details> {
                       return ListView.builder(
                           shrinkWrap: true,
                           itemCount: snapshot.data.documents.length,
-                          itemExtent: 40,
+                          itemExtent: Sizeconfig.blockSizeVertical*7.8125,
                           itemBuilder: (BuildContext context, index) {
                             DocumentSnapshot doc =
                             snapshot.data.documents[index];
                             return ListTile(
-
                               title: Text(doc['रुग्णाचे नाव']),
                               subtitle: Text(doc['रुग्णाची समस्या निवडा']),
                             );

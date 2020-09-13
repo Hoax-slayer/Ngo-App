@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:async';
@@ -9,7 +8,7 @@ class DbService {
 
   Future<void> addData(Vdata) async {
     try {
-      await obj.collection('testdata').add(Vdata);
+      await obj.collection("masterdata").add(Vdata);
 
 //      Firestore.instance.runTransaction((Transaction crudTransaction) async {
 //        CollectionReference reference =
@@ -23,32 +22,33 @@ class DbService {
 
   Future<void> addtoissue(String Name, String text, Sdata) async {
     CollectionReference ref =
-        Firestore.instance.collection("testdata").reference();
+    Firestore.instance.collection("masterdata").reference();
 
     try {
       await ref
-          .where("आरोग्य सेविकेचे नाव", isEqualTo: Name)
+          .where("आरोग्य  सेविकेचे  नाव", isEqualTo: Name)
           .where("महिल कुटुंब प्रमुखाचे नाव", isEqualTo: text)
           .getDocuments()
           .then((value) {
-            print(value.documents.length);
-            if(value.documents.length!=0){
-              value.documents.forEach((res) {
-                obj
-                    .collection("testdata")
-                    .document(res.documentID)
-                    .collection("members")
-                    .add(Sdata)
+        print(value.documents.length);
+        if (value.documents.length != 0) {
+          value.documents.forEach((res) {
+            obj
+                .collection("masterdata")
+                .document(res.documentID)
+                .collection("members")
+                .add(Sdata)
 //                    .catchError((e){
 //                  print(e);
 //                  return Align(alignment:Alignment.bottomCenter,child: Text('Invalid Family Name'));
 //                });
-                    .then((_) {
-                  print("Success");
-                });
-              });
-            }
-            return Container(alignment: Alignment.bottomCenter,child: Text('Invalid Family Name'),);
+                .then((_) {
+              print("Success");
+            });
+          });
+        }
+        return Container(alignment: Alignment.bottomCenter,
+          child: Text('Invalid Family Name'),);
 
 
 //           await obj.collection("testdata")
@@ -78,13 +78,12 @@ class DbService {
 
   gettestData(String Name) {
     try {
-
-      Stream<QuerySnapshot > test = Firestore.instance
+      Stream<QuerySnapshot> test = Firestore.instance
           .collection("testdata")
           .reference()
           .where("आरोग्य सेविकेचे नाव", isEqualTo: Name)
           .snapshots();
-           return test;
+      return test;
 //          .listen((result) {
 //        result.documents.forEach((result) {
 //          print(result.data);
@@ -96,7 +95,7 @@ class DbService {
 //
 //        }
 //      };
-    }  catch (e) {
+    } catch (e) {
       print(e.toString());
     }
   }
@@ -105,12 +104,14 @@ class DbService {
     Stream<QuerySnapshot> name = Firestore.instance
         .collection("masterdata")
         .reference()
-        .where('आरोग्य  सेविकेचे  नाव', isEqualTo: Name)
+        .where("आरोग्य  सेविकेचे  नाव", isEqualTo: Name)
         .snapshots();
     return name;
 
     // .orderBy('Timestamp',descending: true).snapshots();
   }
+
+
 
 //  Future getnum(String Name) async {
 //
@@ -129,5 +130,6 @@ class DbService {
 //    collection('masterdata').where('आरोग्य  सेविकेचे  नाव',isEqualTo:Name).snapshots();
 //    // .orderBy('Timestamp',descending: true).snapshots();
 //  }
+
 
 }

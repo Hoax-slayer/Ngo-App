@@ -91,11 +91,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: SvgPicture.asset('assets/Welcome.svg'),
               ),
 
-
-//        Padding(
-//              padding: EdgeInsets.only(bottom: 318.0),
-//            ),
-//
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
@@ -116,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("चला शुरू करा",
+                            Text("चला सर्वे सुरु करा",
                               style: TextStyle(fontSize: 28,
                               //Sizeconfig.safeBlockHorizontal*7.78,
                                 color: Color.fromRGBO(46, 77, 92, 1) ,
@@ -165,7 +160,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   }
                                   return null;
                                 },
-                                hint: Text('नाव प्रविष्ट करा',style: TextStyle(color: Color.fromRGBO(255, 124, 92, 1),
+                                //नाव प्रविष्ट करा
+                                hint: Text('आपले नाव निवडा',style: TextStyle(color: Color.fromRGBO(255, 124, 92, 1),
                                     fontSize: 20,fontWeight: FontWeight.w300),
                                 ),
                                 isExpanded: true,
@@ -192,7 +188,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       width: 2.0, ),
 
                                   ),
-                                  hintText:'मोबाइल नंबर प्रविष्ट करा',
+                                  //मोबाइल नंबर प्रविष्ट करा
+                                  hintText:'आपला मोबाइल नंबर घाला',
                                   hintStyle: (TextStyle(color: Color.fromRGBO(255, 124, 92, 1),
                                       fontSize: 20)),
                                       //Sizeconfig.safeBlockHorizontal*5.56 )),
@@ -244,9 +241,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                     print(selected.mid);
                                     print(selected.mn);
                                     savename();
-                                    Map<String, dynamic> Userdata={'Name':selected.mn,'Id':selected.mid,
-                                      'phone':this.Hnum, };
-
                                     await verifyPhone();
 
                                   }
@@ -340,7 +334,8 @@ class _MyHomePageState extends State<MyHomePage> {
           return SingleChildScrollView(
               child: AlertDialog(
                 elevation: 5.0,
-                title: Text('Enter OTP'),
+                //Enter OTP
+                title: Text('ओटीपी नंबर भरा'),
                 content:Container(
                   height: Sizeconfig.blockSizeVertical*13.281,
                   child: TextFormField(
@@ -371,10 +366,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         loading=true;
                         Navigator.pop(context);
                         await signIn();
-
-
                       },
-                      child: Text('Verify',
+                      //Verify
+                      child: Text('चेक करा',
                         style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
 
                     ),

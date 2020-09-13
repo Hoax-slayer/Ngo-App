@@ -1,11 +1,10 @@
-import 'package:csscngo/Previous Data/historydata.dart';
+import 'package:csscngo/PreviousData/historydata.dart';
 import 'package:csscngo/Screens/Issues/widows.dart';
 import 'package:csscngo/Screens/Issuesform.dart';
 import 'package:csscngo/Screens/dashboard.dart';
 import 'package:csscngo/Screens/survey.dart';
 import 'package:flutter/material.dart';
 import 'package:csscngo/Screens/home/login.dart';
-import 'package:csscngo/Screens/get_location.dart';
 import 'package:csscngo/Services/auth.dart';
 
 void main() => runApp(MyApp());
@@ -18,36 +17,18 @@ class MyApp extends StatelessWidget {
       // initialRoute:
       routes: {
         //default page is kept as a loading page
-        '/location': (context)=> GetLocation(),
         '/home': (context)=>MyHomePage(),
         '/third': (context)=>Third(),
         '/survey': (context)=>MyCustomForm(),
         '/issuesform':(context)=>Issues(),
         '/widows':(context)=>Widow(),
-        '/history':(context)=>History(),
-//    '/ load': (context)=>Loading(),
-
-
+        '/history':(context)=> History(),
       }
 
     );
   }
 }
 
-
-//class MyApp extends StatelessWidget {
-//  // This widget is the root of your application.
-//  @override
-//  Widget build(BuildContext context) {
-//    return MaterialApp(
-//      title: 'Flutter Demo',
-//      theme: ThemeData(
-//        primarySwatch: Colors.blue,
-//      ),
-//      home: MyHomePage(),
-//    );
-//  }
-//}
 
 
 

@@ -1,11 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:csscngo/Screens/home/login.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:csscngo/Services/auth.dart';
-import 'package:csscngo/Previous Data/historydata.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:csscngo/Services/sizeconfig.dart';
-
 
 
 
@@ -62,37 +61,6 @@ class _ThirdState extends State<Third> {
                     maxLines: 1,
                     //presetFontSizes: [32,33,34],
                   ),
-//                child: InkWell(
-//                  onTap: (){
-//                    setState(() {
-//                      pressed1=!pressed1;
-//                      //getCurrentLocation();
-//                    });
-//                    //Navigator.pushNamed(context, '/register');
-//                  },
-//                  child: Container(
-//
-//                    //color: Colors.green,
-//                    //margin: EdgeInsets.fromLTRB(0,0, 10.0, 40.0),
-//                    padding: EdgeInsets.all(10.0),
-//
-//
-//                    child: Text.rich(
-//                        TextSpan(
-//                          text:'Create new survey application',
-//
-//                          style: pressed1 ? TextStyle(fontSize: 18.0,
-//                            fontWeight: FontWeight.bold,
-//                            color: Colors.blue[800],)
-//                              : TextStyle(fontSize: 18.0,
-//                            fontWeight: FontWeight.bold,
-//                            color: Colors.indigo[900],
-//                          ),
-//                        )
-//                    ) ,
-//
-//                  ),
-//                ),
                 ),
                 Container(
                   //color: Colors.black,
@@ -172,8 +140,9 @@ class _ThirdState extends State<Third> {
                               },
                               child: Container(
                                 alignment: Alignment.centerLeft,
+                                //नवीन सर्वेक्षण करा
 
-                                child: AutoSizeText('नवीन सर्वेक्षण करा',
+                                child: AutoSizeText('नवीन कुटुंबाला सामील करा',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Color.fromRGBO(255, 124, 92, 1),
@@ -234,7 +203,8 @@ class _ThirdState extends State<Third> {
                           child: Container(
                             alignment: Alignment.centerLeft,
                             //color: Colors.black,
-                            child: AutoSizeText('कुटुंबात सदस्य जोडा',
+                            //कुटुंबात सदस्य जोडा
+                            child: AutoSizeText('कुटुंबातील व्यक्तीला सामील करा',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(255, 124, 92, 1),
@@ -248,7 +218,6 @@ class _ThirdState extends State<Third> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -286,7 +255,8 @@ class _ThirdState extends State<Third> {
                           },
                           child: Container(
                             alignment: Alignment.centerLeft,
-                            child: AutoSizeText('मागील भेट तपासा',
+                            //मागील भेट तपासा
+                            child: AutoSizeText('महिला गृहभेटी बद्दल माहिती पहा',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(255, 124, 92, 1),
@@ -315,8 +285,10 @@ class _ThirdState extends State<Third> {
 
                 InkWell(
                   onTap: () async {
-                    await AuthService().signout();
-                    print('signned out');
+                    await signoutDialog(context);
+
+//                    await AuthService().signout();
+//                    print('signned out');
                   },
 
                   child: Container(
@@ -347,6 +319,74 @@ class _ThirdState extends State<Third> {
     setState(() {
       this._name=name;
     });
+  }
+  Future<bool> signoutDialog(BuildContext context){
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder:(context) {
+          return Align(
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+                child: AlertDialog(
+                  //elevation: 5.0,
+                  //तुला खात्री आहे?
+                  title: Text('साइन आऊट करायचे आहे का?'),
+//              content: Container(
+//                  height: Sizeconfig.blockSizeVertical*13.281,
+//                  child: TextFormField(
+//                    keyboardType: TextInputType.number,
+//                    onChanged: (val){
+//                      this.smsCode=val;},
+//                    decoration: InputDecoration(
+//                      enabledBorder: UnderlineInputBorder(
+//                        borderSide: BorderSide(color:Color.fromRGBO(255, 124, 92, 1) ,
+//                          width: 2.0, ),
+//                      ),
+//                      focusedBorder: UnderlineInputBorder(
+//                          borderSide: BorderSide(color:Color.fromRGBO(255, 124, 92, 1) ,
+//                            width: 2.0, )
+//                      ),
+//                    ) ,
+//                  ),
+//                ),
+                  actions: <Widget>[
+                    MaterialButton(
+                      color: Color.fromRGBO(255, 124, 92, 1),
+                      textColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      onPressed: () async {
+                        await AuthService().signout();
+                        print('signned out');
+                        Navigator.pop(context);
+                      },
+                      child: Text('होय',
+                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+                    ),
+
+                    MaterialButton(
+                      color: Color.fromRGBO(255, 124, 92, 1),
+                      textColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('नाही',
+                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+                    ),
+
+
+                  ],
+
+                )
+            ),
+          );
+        }
+    );
   }
 
 }

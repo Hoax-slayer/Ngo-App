@@ -12,9 +12,9 @@ class _WidowState extends State<Widow> {
   final _formKey = GlobalKey<FormState>();
   int sum=0;
   var caste = {'अनुसूचित जाती / जमाती': 3, 'दलित': 5, 'अनुसूचित जात नाही': 1};
-  var yn = {'Yes': 0, 'No': 0};
-  var yns = {'Yes': 5, 'No': 0};
-  var js = {'तीव्र': 5, 'मध्यम': 3, 'सौम्य': 1, 'No': 0};
+  var yn = {'होय': 0, 'नाही': 0};
+  var yns = {'होय': 5, 'नाही': 0};
+  var js = {'तीव्र': 5, 'मध्यम': 3, 'सौम्य': 1, 'नाही': 0};
 
   var Ch, c, F, J, j, L, l, V, v, S, H, cas;
   var dys = {'तीव्र': 5, 'मध्यम': 3, 'सौम्य': 1};
@@ -155,7 +155,7 @@ class _WidowState extends State<Widow> {
                         onChanged: (val) {
                           setState(() {
                             this.Ch = val;
-                            if (this.Ch == 'Yes') {
+                            if (this.Ch == 'होय') {
                               child = true;
                             }
                             Sum(yn[this.Ch]);
@@ -396,7 +396,7 @@ class _WidowState extends State<Widow> {
                             .toList(),
                         onChanged: (val) {
                           setState(() => this.L = val);
-                          if (L == 'Yes') {
+                          if (L == 'होय') {
                             Debt = true;
                           }
                           Sum(yn[this.L]);
@@ -521,7 +521,7 @@ class _WidowState extends State<Widow> {
                             .toList(),
                         onChanged: (val) {
                           setState(() => this.V = val);
-                          if (V == 'Yes') {
+                          if (V == 'होय') {
                             violence = true;
                           }
                           Sum(yn[this.V]);

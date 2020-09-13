@@ -22,6 +22,7 @@ class MyLocation {
 
 class _MyCustomFormState extends State<MyCustomForm> {
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  GeolocationStatus geolocationStatus;
   final _formKey = GlobalKey<FormState>();
 
   Position _currentPosition;
@@ -296,7 +297,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                       //margin: EdgeInsets.only(top: 26.0),
                       //color: Colors.blue,
                       child: Text(
-                        'महिल कुटुंब प्रमुखाचे नाव ',
+                        'महिला कुटुंब प्रमुखाचे नाव ',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -475,22 +476,22 @@ class _MyCustomFormState extends State<MyCustomForm> {
                             await _getCurrentLocation();
                             //await dbref.gettestData(_item);
 
-                            Future.delayed(Duration(seconds: 2), () {
+                            Future.delayed(Duration(seconds: 0), () {
                               GetUid();
                             });
 
-                            Future.delayed(Duration(seconds: 3), () {
+                            Future.delayed(Duration(seconds: 1), () {
                               Map<String, dynamic> Vdata = {
-                                'आरोग्य सेविकेचे नाव': this._item,
+                                "आरोग्य  सेविकेचे  नाव": this._item,
                                 'सुपरवाइजर चे नाव': this._itemselected,
-                                'वस्तीचे नाव ': this.select.Lnm,
+                                'वस्तीचे नाव': this.select.Lnm,
                                 'महिल कुटुंब प्रमुखाचे नाव': this.Hname,
                                 'घरचा पत्ता': this.Vadd,
                                 'कुटुंबातील व्यक्तींची संख्या': this.Fnum,
                                 'संपर्क (मोबाइल नंबर)': this.Mnum,
                                 'Timestamp': obj.format(now),
                                 'Location': currentAddress,
-                                'Unique no': uniquenum
+                                'नवीन कुटुंबाचा युनिक नंबर': uniquenum
                               };
 
                               print(now);
@@ -519,9 +520,11 @@ class _MyCustomFormState extends State<MyCustomForm> {
     );
   }
 
-  _getCurrentLocation() {
-    geolocator
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+  _getCurrentLocation() async {
+    geolocationStatus= await geolocator.checkGeolocationPermissionStatus();
+
+    await geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
       setState(() {
         _currentPosition = position;
@@ -596,9 +599,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
 
   getnum(String Name) {
     streamSub = Firestore.instance
-        .collection("testdata")
+        .collection("masterdata")
         .reference()
-        .where("आरोग्य सेविकेचे नाव", isEqualTo: Name)
+        .where("आरोग्य  सेविकेचे  नाव", isEqualTo: Name)
         .snapshots()
         .listen((doc) {
       setState(() {

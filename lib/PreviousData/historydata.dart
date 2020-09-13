@@ -1,12 +1,10 @@
-import 'dart:collection';
-
 import 'package:csscngo/Screens/home/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csscngo/Services/database.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:csscngo/Previous Data/Details.dart';
+import 'package:csscngo/PreviousData/Details.dart';
 import 'dart:async';
 import 'package:csscngo/Services/sizeconfig.dart';
 
@@ -42,7 +40,7 @@ class _HistoryState extends State<History> {
                 style: TextStyle(
                     color: Color.fromRGBO(46, 77, 92, 1), fontSize: 20),
               ),
-              subtitle: Text(document['Unique no'].toString(),),
+              subtitle: Text(document['नवीन कुटुंबाचा युनिक नंबर'].toString(),),
 
               trailing: Icon(Icons.keyboard_arrow_right,
                   color: Color.fromRGBO(255, 124, 92, 1), size: 23.0),
@@ -135,7 +133,7 @@ class _HistoryState extends State<History> {
             onPressed: () {
               showSearch(
                   context: context,
-                  delegate: DataSearch(obj2.gettestData(Name)));
+                  delegate: DataSearch(obj2.getSurvey(Name)));
             },
           )
         ],
@@ -143,7 +141,7 @@ class _HistoryState extends State<History> {
       body: Container(
         margin: EdgeInsets.only(top:Sizeconfig.blockSizeVertical*3.125 ),
         child: StreamBuilder<QuerySnapshot>(
-          stream: obj2.gettestData(Name),
+          stream: obj2.getSurvey(Name),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData)
@@ -270,7 +268,7 @@ class DataSearch extends SearchDelegate {
                 style: TextStyle(
                     color: Color.fromRGBO(46, 77, 92, 1), fontSize: 20),
               ),
-              subtitle: Text(document['Unique no']),
+              subtitle: Text(document['नवीन कुटुंबाचा युनिक नंबर'].toString()),
               trailing: Icon(Icons.keyboard_arrow_right,
                   color: Color.fromRGBO(255, 124, 92, 1), size: 23.0),
               onTap: () {

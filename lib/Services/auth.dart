@@ -2,57 +2,58 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:csscngo/Models/user.dart';
 import 'package:csscngo/Screens/dashboard.dart';
 import 'package:csscngo/Screens/home/login.dart';
 
 class AuthService{
-  String phoneNo;
-  String verificationId;
-  String smsCode;
+//  String phoneNo;
+//  String verificationId;
+//  String smsCode;
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+//  final FirebaseAuth _auth = FirebaseAuth.instance;
 
 //create user obj based on FirebaseUser
 
-  User _userFromFirebaseUser(FirebaseUser user){
+//  User _userFromFirebaseUser(FirebaseUser user){
+//
+//
+//    return user != null ? User(uid: user.uid): null;
+//  }
 
-
-    return user != null ? User(uid: user.uid): null;
-  }
 
 // auth change user stream
-  Stream<User> get user{
-    return _auth.onAuthStateChanged
-    //.map((FirebaseUser user) =>  _userFromFirebaseUser(user));
-        .map(_userFromFirebaseUser);
+//  Stream<User> get user{
+//    return _auth.onAuthStateChanged
+//    //.map((FirebaseUser user) =>  _userFromFirebaseUser(user));
+//        .map(_userFromFirebaseUser);
+//
+//  }
 
-  }
-
-  Future<String> currentUser() async {
-    FirebaseUser user = await _auth.currentUser();
-    return user != null ? user.uid : null;
-  }
+//  Future<String> currentUser() async {
+//    FirebaseUser user = await _auth.currentUser();
+//    return user != null ? user.uid : null;
+//  }
 
   //sign in anon
-  Future signInAnon() async{
-    try{
-      AuthResult result = await _auth.signInAnonymously();
-      FirebaseUser user = result.user;
-      return _userFromFirebaseUser(user);
+//  Future signInAnon() async{
+//    try{
+//      AuthResult result = await _auth.signInAnonymously();
+//      FirebaseUser user = result.user;
+//      return _userFromFirebaseUser(user);
+//
+//    }
+//    catch(e){
+//      print(e.toString());
+//      return null;
+//    }
+//  }
 
-    }
-    catch(e){
-      print(e.toString());
-      return null;
-    }
-  }
-
-  Future getId() async {
-    final FirebaseUser user = await _auth.currentUser();
-    return user.uid;
-    // here you write the codes to input the data into firestore
-  }
+//
+//  Future getId() async {
+//    final FirebaseUser user = await _auth.currentUser();
+//    return user.uid;
+//    // here you write the codes to input the data into firestore
+//  }
 
 
 
